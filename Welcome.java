@@ -3,10 +3,10 @@ import java.util.Scanner;
 public class Welcome {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("Welcome to House Zhong!");
+        System.out.println("-----------------------");
         System.out.println(
-                "Welcome to House Zhong!\nEnter '1' if you're a staff member \nEnter '2' if you're a customer\nEnter 'Exit' to leave");
-
+                "Enter '1' if you're a staff member \nEnter '2' if you're a customer\nEnter 'Exit' to leave");
         String response = sc.next();
 
         while (true) {
@@ -22,7 +22,10 @@ public class Welcome {
                 System.out.println("Goodbye!");
                 break;
             } else {
-                System.out.println("Invalid option. Try again.");
+                System.out.printf("\n'%s' is not an available option. Try again.\n", response);
+                System.out.println(
+                        "Enter '1' if you're a staff member \nEnter '2' if you're a customer\nEnter 'Exit' to leave");
+                response = sc.next();
             }
         }
     }
