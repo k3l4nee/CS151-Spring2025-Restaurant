@@ -10,7 +10,7 @@ abstract class Employee {
     // constructor
     public Employee(String name, int id, String phoneNumber, String email) {
         this.name = name;
-        this.id++;
+        this.id = id;
         if (phoneNumber == null) {
             this.phoneNumber = "N/A";
         } else {
