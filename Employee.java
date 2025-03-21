@@ -1,8 +1,9 @@
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Scanner;
 
 abstract class Employee {
-    private static int idCount = 0;
+    private static int idCount = 1;
     private static Set<Integer> ids = new HashSet<>();
     private String name;
     private int id;
@@ -29,12 +30,45 @@ abstract class Employee {
         }
     }
 
-    protected static int getAvailableId() {
+    private static int getAvailableId() {
         while (ids.contains(idCount)) {
             idCount++;
         }
         ids.add(idCount);
         return idCount;
+    }
+
+    public static void showEmployeeOptions(String response, Scanner sc) {
+        System.out.println("-----------------------");
+        System.out.println("Are you a full-time or part-time employee?");
+        System.out.println(
+                "  1. Full-time\n  2. Part-time\n  3. Exit\n");
+        System.out.println("Pick an option (1-3):");
+
+        response = sc.next();
+
+        while (true) {
+            if (response.equals("1")) {
+                FullTimeEmployee.showFullTimeOptions(response, sc);
+                break;
+            } else if (response.equals("2")) {
+                PartTimeEmployee.showPartTimeOptions(response, sc);
+                break;
+            } else if (response.equals("3")) {
+                System.out.println("Goodbye!");
+                break;
+            } else if (response.equalsIgnoreCase("Exit")) {
+                System.out.println("Goodbye!");
+                break;
+            } else {
+                System.out.printf("\n'%s' is not an available option. Try again.\n", response);
+                System.out.println("Are you a full-time or part-time employee?");
+                System.out.println(
+                        "  1. Full-time\n  2. Part-time\n  3. Exit\n");
+                System.out.println("Pick an option (1-3):");
+                response = sc.next();
+            }
+        }
     }
 
     // getters
@@ -59,7 +93,7 @@ abstract class Employee {
         this.name = name;
     }
 
-    public void setId(int id) {
+    public void setId(int id) { // throw InvalidIdException?
         if (id < 1) {
             System.out.println("Error: ID must be positive.");
         } else if (ids.contains(id)) {
