@@ -10,16 +10,29 @@ public class FullTimeEmployee extends Employee {
         this.salary = salary;
     }
 
-    public static void showFullTimeOptions(String response, Scanner sc){
-        
+    public static void showFullTimeOptions(String response, Scanner sc) {
+
+    }
+
+    // getters
+    @Override
+    public String getJobTitle() {
+        return this.jobTitle;
     }
 
     @Override
-    public String getJobTitle(){
-        return this.jobTitle;
-    }
-    @Override
-    public double getPay(){
+    public double getPay() {
         return this.salary;
+    }
+
+    // setters
+    @Override
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = "Full-time " + jobTitle;
+    }
+
+    @Override
+    public void setPay(double salary) {
+        this.salary = salary;
     }
 }
