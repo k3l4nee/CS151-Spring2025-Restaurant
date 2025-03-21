@@ -14,7 +14,7 @@ abstract class Employee {
     public abstract String getJobTitle();
 
     // constructor
-    public Employee(String name, int id, String phoneNumber, String email) {
+    public Employee(String name, String phoneNumber, String email) {
         this.name = name;
         this.id = getAvailableId();
         if (phoneNumber == null) {
@@ -29,7 +29,7 @@ abstract class Employee {
         }
     }
 
-    private static int getAvailableId() {
+    protected static int getAvailableId() {
         while (ids.contains(idCount)) {
             idCount++;
         }
