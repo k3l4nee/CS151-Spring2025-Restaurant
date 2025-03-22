@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class PartTimeEmployee extends Employee {
     private String jobTitle;
     private double hourlyWage;
@@ -12,10 +10,6 @@ public class PartTimeEmployee extends Employee {
         this.jobTitle = "Part-time " + jobTitle;
         this.hourlyWage = hourlyWage;
         this.hoursWorked = hoursWorked;
-    }
-
-    public static void showPartTimeOptions(String response, Scanner sc) {
-
     }
 
     @Override
