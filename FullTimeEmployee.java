@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class FullTimeEmployee extends Employee {
     private String jobTitle;
     private double salary;
@@ -9,10 +7,6 @@ public class FullTimeEmployee extends Employee {
         super(name, phoneNumber, email);
         this.jobTitle = "Full-time " + jobTitle;
         this.salary = salary;
-    }
-
-    public static void showFullTimeOptions(String response, Scanner sc) {
-
     }
 
     @Override
