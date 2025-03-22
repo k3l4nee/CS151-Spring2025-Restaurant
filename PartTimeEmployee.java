@@ -5,6 +5,7 @@ public class PartTimeEmployee extends Employee {
     private double hourlyWage;
     private double hoursWorked;
 
+    // constructor
     public PartTimeEmployee(String name, String jobTitle, double hourlyWage, double hoursWorked, String phoneNumber,
             String email) {
         super(name, phoneNumber, email);
@@ -14,7 +15,20 @@ public class PartTimeEmployee extends Employee {
     }
 
     public static void showPartTimeOptions(String response, Scanner sc) {
-        
+
+    }
+
+    @Override
+    public void getEmployeeInfo() {
+        System.out.println("---------------");
+        System.out.println("Name:         " + getName());
+        System.out.println("Employee ID:  " + getId());
+        System.out.println("Job title:    " + getJobTitle());
+        System.out.printf("Hourly wage:  $%.2f\n", getHourlyWage());
+        System.out.printf("Hours worked: %.2f\n", getHoursWorked());
+        System.out.println("Phone number: " + getPhoneNumber());
+        System.out.println("Email:        " + getEmail());
+        System.out.println("---------------");
     }
 
     // getters
@@ -30,6 +44,10 @@ public class PartTimeEmployee extends Employee {
 
     public double getHoursWorked() {
         return this.hoursWorked;
+    }
+
+    public double getHourlyWage() {
+        return this.hourlyWage;
     }
 
     // setters
