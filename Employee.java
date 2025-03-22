@@ -14,6 +14,12 @@ abstract class Employee {
 
     public abstract String getJobTitle();
 
+    public abstract void getEmployeeInfo();
+
+    public abstract void setPay(double pay);
+
+    public abstract void setJobTitle(String jobTitle);
+
     // constructor
     public Employee(String name, String phoneNumber, String email) {
         this.name = name;
