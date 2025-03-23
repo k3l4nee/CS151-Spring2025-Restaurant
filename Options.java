@@ -205,36 +205,34 @@ public class Options {
             } else if (response.equals("3")) {
                 System.out.println("Enter employee ID to fire:");
                 int employeeId;
-                while (true) {
-                    try {
-                        employeeId = sc.nextInt();
-                        if (employeeId <= 0) {
-                            throw new InvalidIdException("ID must be greater than 0.");
-                        }
-                        boolean removed = false;
-                        for (Employee employee : restaurant.getEmployees()) {
-                            if (employee.getId() == employeeId) {
-                                restaurant.removeEmployee(employee);
-                                System.out.println("\nRemoved " + employee.getName() + ":" + employee.getId()
-                                        + " from " + restaurant.getName());
-                                removed = true;
-                                break;
-                            }
-                        }
-                        if (!removed) {
-                            throw new InvalidIdException("Employee ID: " + employeeId + " doesn't exist. Try again.");
-                        }
-                        break;
-                    } catch (InvalidIdException e) {
-                        System.out.println("Error: " + e.getMessage());
-                    } catch (Exception e) {
-                        sc.next();
-                        System.out.println("Error: Enter a number.");
+
+                try {
+                    employeeId = sc.nextInt();
+                    if (employeeId <= 0) {
+                        throw new InvalidIdException("ID must be greater than 0.");
                     }
-                    System.out.println("\nReturning to Restaurant Admin Options...");
-                    Options.showRestaurantAdminOptions(sc, restaurant);
-                    break;
+                    boolean removed = false;
+                    for (Employee employee : restaurant.getEmployees()) {
+                        if (employee.getId() == employeeId) {
+                            restaurant.removeEmployee(employee);
+                            System.out.println("\nRemoved " + employee.getName() + ":" + employee.getId()
+                                    + " from " + restaurant.getName());
+                            removed = true;
+                            break;
+                        }
+                    }
+                    if (!removed) {
+                        throw new InvalidIdException("Employee ID: " + employeeId + " doesn't exist. Try again.");
+                    }
+                } catch (InvalidIdException e) {
+                    System.out.println("Error: " + e.getMessage());
+                } catch (Exception e) {
+                    sc.next();
+                    System.out.println("Error: Enter a number.");
                 }
+                System.out.println("\nReturning to Restaurant Admin Options...");
+                Options.showRestaurantAdminOptions(sc, restaurant);
+                break;
             } else if (response.equals("4")) {
                 for (Employee employee : restaurant.getEmployees()) {
                     employee.getEmployeeInfo();

@@ -23,16 +23,8 @@ abstract class Employee {
     public Employee(String name, String phoneNumber, String email) {
         this.name = name;
         this.id = getAvailableId();
-        if (phoneNumber == null) {
-            this.phoneNumber = "N/A";
-        } else {
-            this.phoneNumber = phoneNumber;
-        }
-        if (email == null) {
-            this.email = "N/A";
-        } else {
-            this.email = email;
-        }
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     private static int getAvailableId() {
