@@ -4,7 +4,7 @@ public class Options {
 
     // welcome options
     public static void showWelcomeOptions(Scanner sc) {
-        System.out.println("Welcome to House Zhong!");
+        System.out.println("Welcome!");
         System.out.println("-----------------------");
         System.out.println("Are you an employee or customer?\n");
         System.out.println(
@@ -77,4 +77,11 @@ public class Options {
     public static void showPartTimeOptions(String response, Scanner sc) {
         
     }
+
+    // customer options
+    public static void showCustomerOptions(String response, Scanner sc) {
+        
+    }
+    
+
 }
