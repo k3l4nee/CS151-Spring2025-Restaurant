@@ -18,7 +18,7 @@ public class Options {
                 Options.showEmployeeOptions(response, sc);
                 break;
             } else if (response.equals("2")) {
-                Customer.showCustomerOptions(response, sc);
+                Options.showCustomerOptions(response, sc);
                 break;
             } else if (response.equals("3") || response.equalsIgnoreCase("Exit")) {
                 System.out.println("Goodbye!");
