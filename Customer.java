@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Customer {
     
-    public void showCustomerOptions(String response, Scanner in) {
+    public static void showCustomerOptions(String response, Scanner sc) {
         System.out.println("customer options");
     }
 }
