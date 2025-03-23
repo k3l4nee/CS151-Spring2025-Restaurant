@@ -77,7 +77,7 @@ public class Restaurant {
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
-
+    
     public int getEmployeeCount() {
         return employees.size();
     }
