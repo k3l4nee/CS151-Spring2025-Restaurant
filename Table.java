@@ -1,6 +1,5 @@
-import java.util.List;
-
 public class Table implements Reservable {
+
     private int tableNumber;
     private int capacity;
     private boolean isOccupied;
@@ -25,7 +24,7 @@ public class Table implements Reservable {
         return capacity;
     }
 
-    public boolean getIsOccupied() {
+    public boolean isOccupied() {
         return isOccupied;
     }
 
@@ -33,7 +32,7 @@ public class Table implements Reservable {
         return currentCustomers;
     }
 
-    public String reservationStatus() {
+    public String getReservationStatus() {
         return reservationStatus;
     }
 
@@ -60,5 +59,36 @@ public class Table implements Reservable {
 
     public void setAssignedWaiter(Employee assignedWaiter) {
         this.assignedWaiter = assignedWaiter;
+    }
+
+    @Override
+    public boolean makeReservation() {
+        if (!isOccupied) {
+            reservationStatus = "Reserved";
+            isOccupied = true;
+            System.out.println("Reservation made for table " + tableNumber);
+            return true;
+        } else {
+            System.out.println("Table " + tableNumber + " is already occupied.");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean cancelReservation() {
+        if (isOccupied) {
+            reservationStatus = "Available";
+            isOccupied = false;
+            System.out.println("Reservation for table " + tableNumber + " has been canceled.");
+            return true;
+        } else {
+            System.out.println("Table " + tableNumber + " is not reserved.");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return !isOccupied;
     }
 }
