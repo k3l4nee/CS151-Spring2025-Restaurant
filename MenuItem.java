@@ -79,7 +79,7 @@ public class MenuItem {
     }
 
     // methods
-    public boolean isAvailable(int stock) {
+    public boolean isAvailable() {
         if(stock > 0) {
             return true;
         }
@@ -116,8 +116,8 @@ public class MenuItem {
         }
     }
 
-    public void updatePrice() {
-        
+    public void updatePrice(double updatedPrice) {
+        this.price = updatedPrice;
     }
 
     public boolean checkIngredientsAvailability() {
