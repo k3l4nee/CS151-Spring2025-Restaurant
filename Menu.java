@@ -1,98 +1,38 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class Menu {
-    private String item;
-    private String category;
-    private double price;
-    private int id;
-    private String description;
-    private boolean isAvailable;
-    private String ingredients;
+    private String categories;
+    private List<MenuItem> menu;
 
-    // constructor
-    public Menu(String item, String category, double price) {
-        this.item = item;
-        this.category = category;
-        this.price = price;
+    public Menu() {
+        menu = new ArrayList<>();
     }
 
-    // getters
-    public String getItem(String item) {
-        return item;
+    public List<MenuItem> getMenu() {
+        return menu;
     }
 
-    public String getCategory(String category) {
-        return category;
+    public void addToMenu(MenuItem item) {
+        menu.add(item);
     }
 
-    public double getPrice(double price) {
-        return price;
-    }
-
-    public int getId(int id) {
-        return id;
-    }
-
-    public String getDescription(String description) {
-        return description;
-    }
-
-    public boolean getIsAvailable(boolean isAvailable) {
-        return isAvailable;
-    }
-
-    public String getIngredients(String ingredients) {
-        return ingredients;
-    }
-
-    // setters
-    public void setItem(String item) {
-        this.item = item;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
-    public void setIngredients(String ingredients) { 
-        this.ingredients = ingredients;
-    }
-
-    public void listBestSellers() {
-
+    // when an item from the menu is unavailable
+    public void removeFromMenu(MenuItem item) {
+        menu.remove(item);
     }
 
     public void listVegetarianOptions() {
-
-    }
-
-    public void listAllergens() {
-        
-    }
-
-    public void updatePrice() {
-
-    }
-
-    public boolean checkIngredientsAvailability() {
-        return true;
-    }
-    
-    public boolean changeAvailability() {
-        return true;
+        List<MenuItem> vegetarianOptions = new ArrayList<>();
+        for(MenuItem item : menu) {
+            if(item.isVegetarian()) {
+                vegetarianOptions.add(item);
+            }
+        }
+        if(vegetarianOptions.isEmpty()) {
+            System.out.println("No Vegetarian Options");
+        } else {
+            System.out.println("Vegetarian Options: " + vegetarianOptions);
+        }
     }
 }
