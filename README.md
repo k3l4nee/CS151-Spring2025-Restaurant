@@ -48,6 +48,6 @@ You may need to scroll back a bit in the terminal to see the displayed results.
 ## Contributions
 
 - **Eric** - Implemented Employee, FullTimeEmployee, PartTimeEmployee, Restaurant, Options, Welcome
-- **Tina** -
+- **Tina** - Implemented Orderable interface, worked on Customer, Menu, MenuItem, and Table class
 - **Kevin** -
 - **Kelani** -
