@@ -1,20 +1,15 @@
-import java.util.List;
-
 public class Table implements Reservable {
 
     private int tableNumber;
     private int capacity;
     private boolean isOccupied;
-    private List<Customer> currentCustomers;
     private String reservationStatus;
-    private Employee assignedWaiter;
 
     // constructor
-    public Table(int tableNumber, int capacity, boolean isOccupied, Employee assignedWaiter) {
+    public Table(int tableNumber, int capacity, boolean isOccupied) {
         this.tableNumber = tableNumber;
         this.capacity = capacity;
         this.isOccupied = isOccupied;
-        this.assignedWaiter = assignedWaiter;
     }
 
     // getters
@@ -30,16 +25,8 @@ public class Table implements Reservable {
         return isOccupied;
     }
 
-    public List<Customer> getCurrentCustomers() {
-        return currentCustomers;
-    }
-
     public String getReservationStatus() {
         return reservationStatus;
-    }
-
-    public Employee getAssignedWaiter() {
-        return assignedWaiter;
     }
 
     // setters
@@ -51,16 +38,8 @@ public class Table implements Reservable {
         this.isOccupied = isOccupied;
     }
 
-    public void setCurrentCustomers(List<Customer> currentCustomers) {
-        this.currentCustomers = currentCustomers;
-    }
-
     public void setReservationStatus(String reservationStatus) {
         this.reservationStatus = reservationStatus;
-    }
-
-    public void setAssignedWaiter(Employee assignedWaiter) {
-        this.assignedWaiter = assignedWaiter;
     }
 
     @Override
