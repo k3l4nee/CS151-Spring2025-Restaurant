@@ -32,6 +32,9 @@ Our UI throughout the restaurant uses multiple "Options" screens that can be jum
 
 - Exceptions - Invalid id, invalid pay, invalid item
 
+**UML Diagram**
+![Restaurant System UML Diagram](Restaurant-System-Class-Diagram.png)
+
 ## Installation Instructions
 
 Use `git clone https://github.com/k3l4nee/CS151-Spring2025-Restaurant.git` in your IDE or text editor.
