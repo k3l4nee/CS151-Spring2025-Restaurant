@@ -121,15 +121,6 @@ public class Menu implements InventoryOperations {
             }
         }
         return null;
-        System.out.println("Added " + quantity + " of " + itemName);
-    }
-
-    public void checkMenuStock() {
-        System.out.println("Inventory Stock: ");
-        for (MenuItem item : inventoryStock.keySet()) {
-            int qty = inventoryStock.get(item);
-            System.out.printf("%s - Quantity: %d\n", item, qty);
-        }
     }
 
     // when a customer orders the item
