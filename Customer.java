@@ -5,6 +5,7 @@ public class Customer implements Orderable {
     private String name;
     private String phoneNumber;
     private List<MenuItem> order;
+    private String orderStatus;
 
     // constructor
     public Customer(String name, String phoneNumber) {
@@ -22,6 +23,14 @@ public class Customer implements Orderable {
         return this.phoneNumber;
     }
 
+    public List<MenuItem> order() {
+        return this.order;
+    }
+
+    public String getOrderStatus() {
+        return this.orderStatus;
+    }
+
     // setters
     public void setName(String name) {
         this.name = name;
@@ -29,6 +38,25 @@ public class Customer implements Orderable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    // methods
+    public void updateInfo(String newName, String newPhoneNumber) {
+        this.name = newName;
+        this.phoneNumber = newName;
+    }
+
+    public void order(MenuItem item, int quantity) {
+        int itemStock = item.getStock();
+        if(itemStock < quantity) {
+            System.out.println("This item: " + item + " is out of stock!");
+        } else {
+            item.setStock(itemStock - quantity); 
+        }
     }
 
     // methods from Orderable
@@ -48,10 +76,13 @@ public class Customer implements Orderable {
     
     @Override
     public void submitOrder(List<MenuItem> order) {
-        for(MenuItem item : order) {
-            Menu.updateStock(item);
+        if(order.isEmpty()) {
+            System.out.println("Error: No items in order.");
+            return;
+        } else {
+            orderStatus = "Submitted";
         }
-        System.out.println("Order has been submitted.");
+        System.out.println("Order has been submitted successfully.");
     }
 
     @Override
