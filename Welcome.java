@@ -15,6 +15,17 @@ public class Welcome {
         Customer customer1 = new Customer("James", "408-222-2222");
         Customer customer2 = new Customer("Jasmine", "804-555-3331");
 
+        MenuItem foodItem1 = new MenuItem("Fries", 3.99, 500, "Food");
+        MenuItem foodItem2 = new MenuItem("Burger", 5.99, 500, "Food");
+        MenuItem bevItem1 = new MenuItem("Soda", 1.99, 500, "Beverage");
+        MenuItem bevItem2 = new MenuItem("Water", 0.99, 500, "Beverage");
+
+        Menu menu = new Menu();
+        menu.addToMenu(foodItem1);
+        menu.addToMenu(foodItem2);
+        menu.addToMenu(bevItem1);
+        menu.addToMenu(bevItem2);
+
         restaurant.addEmployee(fullEmp1);
         restaurant.addEmployee(fullEmp2);
         restaurant.addEmployee(partEmp1);
