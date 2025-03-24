@@ -73,7 +73,7 @@ public class Options {
         System.out.println("-----------------------");
         System.out.println("Full-time Employee Options\n");
         System.out.println(
-                "  1. Restaurant Admin\n  2. Menu\n  3. Back\n  4. Exit\n");
+                "  1. Restaurant Admin\n  2. Inventory\n  3. Back\n  4. Exit\n");
         System.out.println("Pick an option (1-4):");
 
         String response = sc.next();
@@ -83,7 +83,7 @@ public class Options {
                 showRestaurantAdminOptions(sc, restaurant, menu);
                 break;
             } else if (response.equals("2")) {
-                showMenuOptions(sc, restaurant);
+                showInventoryOptions(sc, restaurant, menu);
                 break;
             } else if (response.equals("3")) {
                 showEmployeeOptions(sc, restaurant, menu);
@@ -108,14 +108,14 @@ public class Options {
         System.out.println("-----------------------");
         System.out.println("Part-time Employee Options\n");
         System.out.println(
-                "  1. Menu\n  2. Back\n  3. Exit\n");
+                "  1. Inventory\n  2. Back\n  3. Exit\n");
         System.out.println("Pick an option (1-3):");
 
         String response = sc.next();
 
         while (true) {
             if (response.equals("1")) {
-                showMenuOptions(sc, restaurant);
+                showInventoryOptions(sc, restaurant, menu);
                 break;
             } else if (response.equals("2")) {
                 showEmployeeOptions(sc, restaurant, menu);
@@ -146,11 +146,7 @@ public class Options {
 
         while (true) {
             if (response.equals("1")) {
-                System.out.println("\nMenu:");
-                System.out.println("-----------------------");
-                for (MenuItem item : menu.getMenu()) {
-                    System.out.println(item.getName() + " - $" + item.getPrice() + " | Quantity - " + item.getStock());
-                }
+                menu.listAllMenuItems();
                 showCustomerOptions(sc, restaurant, menu);
                 break;
 
@@ -161,45 +157,24 @@ public class Options {
                     int count;
 
                     try {
-                        switch (response) {
-                            case "fries":
-                                System.out.println("How many?");
-                                count = sc.nextInt();
-                                Customer.order(menu.getMenu().get(0), count);
-                                System.out.println("Ordered: " + response + " | Quantity: " + count);
-                                break;
-                            case "burger":
-                                System.out.println("How many?");
-                                count = sc.nextInt();
-                                Customer.order(menu.getMenu().get(1), count);
-                                System.out.println("Ordered: " + response + " | Quantity: " + count);
-                                break;
-                            case "soda":
-                                System.out.println("How many?");
-                                count = sc.nextInt();
-                                Customer.order(menu.getMenu().get(2), count);
-                                System.out.println("Ordered: " + response + " | Quantity: " + count);
-                                break;
-                            case "water":
-                                System.out.println("How many?");
-                                count = sc.nextInt();
-                                Customer.order(menu.getMenu().get(3), count);
-                                System.out.println("Ordered: " + response + " | Quantity: " + count);
-                                break;
-                            default:
-                                throw new InvalidItemException(response + " is not sold here. Try again.");
+                        MenuItem item = menu.matchMenuItemName(response);
+                        if (item != null) {
+                            System.out.println("How many?");
+                            count = sc.nextInt();
+                            if (menu.subtractFromMenuStock(item, count)) {
+                                System.out.println("Ordered: " + item.getName() + " | Quantity: " + count);
+                            }
+                        } else {
+                            throw new InvalidItemException(response + " is not sold here. Try again.");
                         }
                     } catch (InvalidItemException e) {
                         System.out.println("Error: " + e.getMessage());
-                        continue;
                     } catch (Exception e) {
                         System.out.println("Error: Enter a number.");
                         sc.next();
-                        continue;
                     }
                     break;
                 }
-
                 showCustomerOptions(sc, restaurant, menu);
                 break;
 
@@ -238,7 +213,7 @@ public class Options {
                 System.out.println("Name?");
                 String name = sc.next();
 
-                System.out.println("Job title? 'Full-time' [enter]");
+                System.out.println("Job title? 'Full-time [enter]'");
                 String jobTitle = sc.next();
 
                 double hourlyWage = 0;
@@ -269,7 +244,6 @@ public class Options {
 
                 restaurant.addEmployee(newFullTimeEmployee);
                 System.out.println("Added " + newFullTimeEmployee.getName() + " to " + restaurant.getName());
-                System.out.println("Returning to Restaurant Admin Options...");
                 showRestaurantAdminOptions(sc, restaurant, menu);
                 break;
 
@@ -308,7 +282,6 @@ public class Options {
 
                 restaurant.addEmployee(newPartTimeEmployee);
                 System.out.println("\nAdded " + newPartTimeEmployee.getName() + " to " + restaurant.getName());
-                System.out.println("\nReturning to Restaurant Admin Options...");
                 showRestaurantAdminOptions(sc, restaurant, menu);
                 break;
 
@@ -340,14 +313,12 @@ public class Options {
                     sc.next();
                     System.out.println("Error: Enter a number.");
                 }
-                System.out.println("\nReturning to Restaurant Admin Options...");
                 showRestaurantAdminOptions(sc, restaurant, menu);
                 break;
             } else if (response.equals("4")) {
                 for (Employee employee : restaurant.getEmployees()) {
                     employee.getEmployeeInfo();
                 }
-                System.out.println("Returning to Restaurant Admin Options...");
                 showRestaurantAdminOptions(sc, restaurant, menu);
                 break;
             } else if (response.equals("5")) {
@@ -367,7 +338,65 @@ public class Options {
     }
 
     // inventory options
-    public static void showMenuOptions(Scanner sc, Restaurant restaurant) {
+    public static void showInventoryOptions(Scanner sc, Restaurant restaurant, Menu menu) {
+        System.out.println("-----------------------");
+        System.out.println("Inventory Options\n");
+        System.out.println("  1. Check Stock\n  2. Add To Stock\n  3. Back\n  4. Exit\n");
+        System.out.println("Pick an option (1-4):");
+
+        String response = sc.next();
+
+        while (true) {
+            if (response.equals("1")) {
+                System.out.println("Inventory Stock: ");
+                menu.checkMenuStock();
+                showInventoryOptions(sc, restaurant, menu);
+                break;
+
+            } else if (response.equals("2")) {
+                while (true) {
+                    System.out.println("Add to which item's stock? (Fries, Burger, Soda, or Water)");
+                    response = sc.next().toLowerCase();
+                    int count;
+
+                    try {
+                        MenuItem item = menu.matchMenuItemName(response);
+                        if (item != null) {
+                            System.out.println("Quantity?");
+                            count = sc.nextInt();
+                            menu.addToMenuStock(item, count);
+                        } else {
+                            throw new InvalidItemException(response + " is not a valid item. Try again.");
+                        }
+                    } catch (InvalidItemException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: Enter a number.");
+                        sc.next();
+                    }
+                    break;
+                }
+                showInventoryOptions(sc, restaurant, menu);
+                break;
+
+            } else if (response.equals("3")) {
+                showWelcomeOptions(sc, restaurant, menu);
+                break;
+
+            } else if (response.equals("4") || response.equalsIgnoreCase("exit")) {
+                System.out.println("Goodbye!");
+                sc.close();
+                System.exit(0);
+
+            } else {
+                System.out.printf("\n'%s' is not an available option. Try again.\n", response);
+                System.out.println("-----------------------");
+                System.out.println("Customer Options\n");
+                System.out.println("  1. Menu\n  2. Order\n  3. Back\n  4. Exit\n");
+                System.out.println("Pick an option (1-4):");
+                response = sc.next();
+            }
+        }
 
     }
 
