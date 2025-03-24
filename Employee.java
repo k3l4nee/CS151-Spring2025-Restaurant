@@ -57,7 +57,7 @@ abstract class Employee {
         this.name = name;
     }
 
-    public void setId(int id) { // throw InvalidIdException?
+    public void setId(int id) {
         if (id < 1) {
             System.out.println("Error: ID must be positive.");
         } else if (ids.contains(id)) {
