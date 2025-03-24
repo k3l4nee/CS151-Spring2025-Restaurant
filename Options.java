@@ -17,7 +17,7 @@ public class Options {
                 Options.showEmployeeOptions(sc, restaurant);
                 break;
             } else if (response.equals("2")) {
-                Options.showCustomerOptions(sc);
+                Options.showCustomerOptions(sc, restaurant);
                 break;
             } else if (response.equals("3") || response.equalsIgnoreCase("Exit")) {
                 System.out.println("Goodbye!");
@@ -48,7 +48,7 @@ public class Options {
                 Options.showFullTimeOptions(sc, restaurant);
                 break;
             } else if (response.equals("2")) {
-                Options.showPartTimeOptions(sc);
+                Options.showPartTimeOptions(sc, restaurant);
                 break;
             } else if (response.equals("3")) {
                 Options.showWelcomeOptions(sc, restaurant);
@@ -73,7 +73,7 @@ public class Options {
         System.out.println("-----------------------");
         System.out.println("Full-time Employee Options\n");
         System.out.println(
-                "  1. Restaurant Admin\n  2. Inventory\n  3. Back\n  4. Exit\n");
+                "  1. Restaurant Admin\n  2. Menu\n  3. Back\n  4. Exit\n");
         System.out.println("Pick an option (1-4):");
 
         String response = sc.next();
@@ -83,7 +83,7 @@ public class Options {
                 Options.showRestaurantAdminOptions(sc, restaurant);
                 break;
             } else if (response.equals("2")) {
-                Options.showInventoryOptions(sc);
+                Options.showMenuOptions(sc, restaurant);
                 break;
             } else if (response.equals("3")) {
                 Options.showEmployeeOptions(sc, restaurant);
@@ -104,13 +104,70 @@ public class Options {
     }
 
     // part-time employee options
-    public static void showPartTimeOptions(Scanner sc) {
+    public static void showPartTimeOptions(Scanner sc, Restaurant restaurant) {
+        System.out.println("-----------------------");
+        System.out.println("Part-time Employee Options\n");
+        System.out.println(
+                "  1. Menu\n  2. Back\n  3. Exit\n");
+        System.out.println("Pick an option (1-3):");
 
+        String response = sc.next();
+
+        while (true) {
+            if (response.equals("1")) {
+                Options.showMenuOptions(sc, restaurant);
+                break;
+            } else if (response.equals("2")) {
+                Options.showEmployeeOptions(sc, restaurant);
+                break;
+            } else if (response.equals("3") || response.equalsIgnoreCase("Exit")) {
+                System.out.println("Goodbye!");
+                sc.close();
+                System.exit(0);
+            } else {
+                System.out.printf("\n'%s' is not an available option. Try again.\n", response);
+                System.out.println("Part-time Employee Options\n");
+                System.out.println(
+                        "  1. Inventory\n  2. Back\n  3. Exit\n");
+                System.out.println("Pick an option (1-3):");
+                response = sc.next();
+            }
+        }
     }
 
     // customer options
-    public static void showCustomerOptions(Scanner sc) {
+    public static void showCustomerOptions(Scanner sc, Restaurant restaurant) {
+        System.out.println("-----------------------");
+        System.out.println("Customer Options\n");
+        System.out.println(
+                "  1. Menu\n  2. Order\n  3. Back\n  4. Exit\n");
+        System.out.println("Pick an option (1-4):");
 
+        String response = sc.next();
+
+        while (true) {
+            if (response.equals("1")) {
+                // need list method from Menu to show menu items
+                break;
+            } else if (response.equals("2")) {
+                // need order method from Customer to order food
+                break;
+            } else if (response.equals("3")) {
+                Options.showWelcomeOptions(sc, restaurant);
+                break;
+            } else if (response.equals("4") || response.equalsIgnoreCase("Exit")) {
+                System.out.println("Goodbye!");
+                sc.close();
+                System.exit(0);
+            } else {
+                System.out.printf("\n'%s' is not an available option. Try again.\n", response);
+                System.out.println("Part-time Employee Options\n");
+                System.out.println(
+                        "  1. Inventory\n  2. Back\n  3. Exit\n");
+                System.out.println("Pick an option (1-3):");
+                response = sc.next();
+            }
+        }
     }
 
     // restaurant admin options
@@ -144,7 +201,7 @@ public class Options {
                     } catch (InvalidPayException e) {
                         System.out.println("Error: " + e.getMessage());
                     } catch (Exception e) {
-                        System.out.println("Error: Enter a numeric value.");
+                        System.out.println("Error: Enter a number.");
                         sc.next();
                     }
                 }
@@ -215,7 +272,7 @@ public class Options {
                     for (Employee employee : restaurant.getEmployees()) {
                         if (employee.getId() == employeeId) {
                             restaurant.removeEmployee(employee);
-                            System.out.println("\nRemoved " + employee.getName() + ":" + employee.getId()
+                            System.out.println("\nFired " + employee.getName() + ":" + employee.getId()
                                     + " from " + restaurant.getName());
                             removed = true;
                             break;
@@ -256,7 +313,7 @@ public class Options {
     }
 
     // inventory options
-    public static void showInventoryOptions(Scanner sc) {
+    public static void showMenuOptions(Scanner sc, Restaurant restaurant) {
 
     }
 
