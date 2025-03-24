@@ -6,9 +6,9 @@ This program emulates a restaurant system where the user can enter as an employe
 
 ## Design
 
-Imagine you're entering the restaurant during the day so there are already some employees and customers inside. You can pretend to be an employee (full-time or part-time) or a customer and get access to different methods according to their respective roles.\
+Imagine you're entering the restaurant during the day so there are already some employees and customers inside. You can pretend to be an employee (full-time or part-time) or a customer and get access to different methods according to their respective roles.
 
-Our navigation throughout the restaurant uses multiple "Options" screens that can be jumped through back and forth by entering the number corresponding to the option.\
+Our navigation throughout the restaurant uses multiple "Options" screens that can be jumped through back and forth by entering the number corresponding to the option.
 
 **Classes**
 
@@ -23,6 +23,8 @@ Our navigation throughout the restaurant uses multiple "Options" screens that ca
 - Customer - can place orders using Orderable
 
 - Menu - acts as the inventory and keeps track of each menuItem's quantity
+
+- MenuItem - each individual item on the menu
 
 - Restaurant - acts as the admin or HR, can add or remove employees, customers, or tables
 
