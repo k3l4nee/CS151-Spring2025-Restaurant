@@ -48,6 +48,6 @@ You may need to scroll back a bit in the terminal to see the displayed results.
 ## Contributions
 
 - **Eric** - Implemented Employee, FullTimeEmployee, PartTimeEmployee, Restaurant, Options, Welcome
-- **Tina** -
-- **Kevin** -
+- **Tina** - Implemented Orderable interface, worked on Customer, Menu, MenuItem, and Table class
+- **Kevin** - Implemented the UML Class Diagram, worked on Menu Class and Reservable interface
 - **Kelani** -

@@ -9,6 +9,7 @@ public class Menu implements InventoryOperations {
     private int quantity;
     private Map<MenuItem, Integer> inventoryStock;
 
+
     public Menu() {
         this.menu = new ArrayList<>();
         this.inventoryStock = new TreeMap<>();
@@ -75,7 +76,6 @@ public class Menu implements InventoryOperations {
 
         // add or update inventory
         inventoryStock.put(itemName, inventoryStock.getOrDefault(itemName, 0) + quantity);
-
         System.out.println("Added " + quantity + " of " + itemName.getName());
     }
 
@@ -121,6 +121,15 @@ public class Menu implements InventoryOperations {
             }
         }
         return null;
+        System.out.println("Added " + quantity + " of " + itemName);
+    }
+
+    public void checkMenuStock() {
+        System.out.println("Inventory Stock: ");
+        for (MenuItem item : inventoryStock.keySet()) {
+            int qty = inventoryStock.get(item);
+            System.out.printf("%s - Quantity: %d\n", item, qty);
+        }
     }
 
     // when a customer orders the item
@@ -143,9 +152,7 @@ public class Menu implements InventoryOperations {
 
         this.itemName = item;
         this.quantity = currentStock - quantity;
-
         return true;
 
     }
-
 }
