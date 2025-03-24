@@ -9,7 +9,6 @@ public class Menu implements InventoryOperations {
     private int quantity;
     private Map<MenuItem, Integer> inventoryStock;
 
-
     public Menu() {
         this.menu = new ArrayList<>();
         this.inventoryStock = new TreeMap<>();
@@ -54,20 +53,6 @@ public class Menu implements InventoryOperations {
         menu.remove(item);
     }
 
-    public void listVegetarianOptions() {
-        List<MenuItem> vegetarianOptions = new ArrayList<>();
-        for (MenuItem item : menu) {
-            if (item.isVegetarian()) {
-                vegetarianOptions.add(item);
-            }
-        }
-        if (vegetarianOptions.isEmpty()) {
-            System.out.println("No Vegetarian Options");
-        } else {
-            System.out.println("Vegetarian Options: " + vegetarianOptions);
-        }
-    }
-
     // methods for Inventory
     @Override
     public void addToMenuStock(MenuItem itemName, int quantity) {
@@ -85,13 +70,10 @@ public class Menu implements InventoryOperations {
             if (!inventoryStock.containsKey(itemName)) {
                 throw new InvalidItemException("Item " + itemName.getName() + " not found in inventory.");
             }
-
             int currentStock = inventoryStock.get(itemName);
-
             if (currentStock < quantity) {
                 throw new Exception("Not enough stock to subtract. Available stock: " + currentStock);
             }
-
             inventoryStock.put(itemName, currentStock - quantity);
             return true;
 
@@ -123,27 +105,4 @@ public class Menu implements InventoryOperations {
         return null;
     }
 
-    // when a customer orders the item
-    public boolean consumeItem(MenuItem item, int quantity) {
-        if (!inventoryStock.containsKey(item)) {
-            System.out.println("Item: " + item.getName() + " not found in inventory");
-            return false;
-        }
-
-        int currentStock = inventoryStock.get(item);
-        if (currentStock < quantity) {
-            System.out.println("Not enough " + item.getName() + " in stock. Available: " + currentStock
-                    + ", Requested: " + quantity);
-            return false;
-        }
-
-        inventoryStock.put(item, currentStock - quantity);
-        System.out.println(
-                "Consumed " + quantity + " of " + item.getName() + ". Remaining: " + (currentStock - quantity));
-
-        this.itemName = item;
-        this.quantity = currentStock - quantity;
-        return true;
-
-    }
 }

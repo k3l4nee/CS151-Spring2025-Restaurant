@@ -5,10 +5,8 @@ public class MenuItem implements Comparable<MenuItem> {
     private String name;
     private String category;
     private double price;
-    private int id;
-    private String description;
-    private List<String> ingredients;
     private int stock;
+    private List<String> ingredients;
     private static final List<String> COMMON_FOOD_ALLERGIES = List.of("Peanuts", "Tree Nuts", "Dairy", "Soy", "Eggs",
             "Fish", "Shellfish", "Wheat");
     private static final List<String> NOT_VEGETARIAN_FRIENDLY = List.of("Chicken", "Beef", "Pork", "Turkey", "Fish",
@@ -35,14 +33,6 @@ public class MenuItem implements Comparable<MenuItem> {
         return price;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public List<String> getIngredients() {
         return ingredients;
     }
@@ -62,14 +52,6 @@ public class MenuItem implements Comparable<MenuItem> {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setIngredients(List<String> ingredients) {
@@ -125,13 +107,5 @@ public class MenuItem implements Comparable<MenuItem> {
 
     public void updatePrice(double updatedPrice) {
         this.price = updatedPrice;
-    }
-
-    public boolean checkIngredientsAvailability() {
-        return true;
-    }
-
-    public boolean changeAvailability() {
-        return true;
     }
 }
