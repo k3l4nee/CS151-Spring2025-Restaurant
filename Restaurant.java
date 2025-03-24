@@ -6,7 +6,6 @@ public class Restaurant {
     private String openHours;
     private String phoneNumber;
     private int capacity;
-    private ArrayList<Table> tables;
     private ArrayList<Employee> employees;
     private ArrayList<Customer> customers;
 
@@ -16,7 +15,6 @@ public class Restaurant {
         this.openHours = openHours;
         this.phoneNumber = phoneNumber;
         this.capacity = capacity;
-        this.tables = new ArrayList<>();
         this.employees = new ArrayList<>();
         this.customers = new ArrayList<>();
     }
@@ -35,14 +33,6 @@ public class Restaurant {
 
     public void removeCustomer(Customer customer) {
         customers.remove(customer);
-    }
-
-    public void addTable(Table table) {
-        tables.add(table);
-    }
-
-    public void removeTable(Table table) {
-        tables.remove(table);
     }
 
     // getters
@@ -64,10 +54,6 @@ public class Restaurant {
 
     public int getCapacity() {
         return capacity;
-    }
-
-    public ArrayList<Table> getTables() {
-        return tables;
     }
 
     public ArrayList<Employee> getEmployees() {
@@ -105,10 +91,6 @@ public class Restaurant {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public void setTables(ArrayList<Table> tables) {
-        this.tables = tables;
     }
 
     public void setEmployees(ArrayList<Employee> employees) {
