@@ -5,7 +5,6 @@ public class Customer implements Orderable {
     private String name;
     private String phoneNumber;
     private List<MenuItem> order;
-    private String orderStatus;
 
     // constructor
     public Customer(String name, String phoneNumber) {
@@ -27,10 +26,6 @@ public class Customer implements Orderable {
         return this.order;
     }
 
-    public String getOrderStatus() {
-        return this.orderStatus;
-    }
-
     // setters
     public void setName(String name) {
         this.name = name;
@@ -38,10 +33,6 @@ public class Customer implements Orderable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     // methods
