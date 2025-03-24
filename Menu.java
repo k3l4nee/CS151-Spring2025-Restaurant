@@ -1,23 +1,33 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Menu {
-    private String categories;
     private List<MenuItem> menu;
+    private MenuItem itemName;
+    //private double price;
+    private int quantity;
+    private Map<MenuItem, Integer> inventoryStock;
+    
 
     public Menu() {
-        menu = new ArrayList<>();
+        this.menu = new ArrayList<>();
+        this.inventoryStock = new HashMap<>();
     }
 
-    public List<MenuItem> getMenu() {
-        return menu;
+    // methods for MenuItem
+    public void listAllMenuItems() {
+        System.out.println("Menu Items: ");
+        for (MenuItem item : menu) {
+            System.out.printf("%s - $%.2f - %s\n", item.getName(), item.getPrice(), item.getCategory());
+        }
     }
 
     public void addToMenu(MenuItem item) {
         menu.add(item);
     }
 
-    // when an item from the menu is unavailable
     public void removeFromMenu(MenuItem item) {
         menu.remove(item);
     }
@@ -35,4 +45,25 @@ public class Menu {
             System.out.println("Vegetarian Options: " + vegetarianOptions);
         }
     }
+
+    // methods for Inventory
+    public void addToMenuStock(MenuItem itemName, int quantity) {
+        this.itemName = itemName;
+        this.quantity = quantity;
+
+        inventoryStock.put(itemName, quantity);
+
+        System.out.println("Added " + quantity + " of " + itemName);
+    }
+
+    public void checkMenuStock() {
+        System.out.println("Inventory Stock: ");
+        for (MenuItem item : inventoryStock.keySet()) {
+            int qty = inventoryStock.get(item);
+            System.out.printf("%s - Quantity: %d", item, qty);
+        }
+    }
+
+
+
 }
