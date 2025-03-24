@@ -50,7 +50,7 @@ public class Customer implements Orderable {
         this.phoneNumber = newName;
     }
 
-    public void order(MenuItem item, int quantity) {
+    public static void order(MenuItem item, int quantity) {
         int itemStock = item.getStock();
         if(itemStock < quantity) {
             System.out.println("This item: " + item + " is out of stock!");
