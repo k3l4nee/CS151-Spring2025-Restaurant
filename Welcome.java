@@ -34,6 +34,6 @@ public class Welcome {
         restaurant.addCustomer(customer2);
 
         System.out.println("Welcome!");
-        Options.showWelcomeOptions(sc, restaurant);
+        Options.showWelcomeOptions(sc, restaurant, menu);
     }
 }
