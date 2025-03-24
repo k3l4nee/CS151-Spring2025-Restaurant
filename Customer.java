@@ -1,10 +1,7 @@
 public class Customer {
-    private String type;
     private String name;
     private String phoneNumber;
-    private int loyaltyPoints;
     //private Table currentTable;
-    //private ArrayList<Order> orderHistory;
 
     // constructor
     public Customer(String name, String phoneNumber) {
