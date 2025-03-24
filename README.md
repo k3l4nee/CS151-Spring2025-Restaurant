@@ -49,5 +49,5 @@ You may need to scroll back a bit in the terminal to see the displayed results.
 
 - **Eric** - Implemented Employee, FullTimeEmployee, PartTimeEmployee, Restaurant, Options, Welcome
 - **Tina** - Implemented Orderable interface, worked on Customer, Menu, MenuItem, and Table class
-- **Kevin** -
+- **Kevin** - Implemented the UML Class Diagram, worked on Menu Class and Reservable interface
 - **Kelani** -
