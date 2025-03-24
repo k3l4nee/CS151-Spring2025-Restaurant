@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuItem {
+public class MenuItem implements Comparable<MenuItem> {
     private String name;
     private String category;
     private double price;
@@ -9,8 +9,10 @@ public class MenuItem {
     private String description;
     private List<String> ingredients;
     private int stock;
-    private static final List<String> COMMON_FOOD_ALLERGIES = List.of("Peanuts", "Tree Nuts", "Dairy", "Soy", "Eggs", "Fish", "Shellfish", "Wheat");
-    private static final List<String> NOT_VEGETARIAN_FRIENDLY = List.of("Chicken", "Beef", "Pork",  "Turkey", "Fish", "Shrimp");
+    private static final List<String> COMMON_FOOD_ALLERGIES = List.of("Peanuts", "Tree Nuts", "Dairy", "Soy", "Eggs",
+            "Fish", "Shellfish", "Wheat");
+    private static final List<String> NOT_VEGETARIAN_FRIENDLY = List.of("Chicken", "Beef", "Pork", "Turkey", "Fish",
+            "Shrimp");
 
     // constructor
     public MenuItem(String name, double price, int stock, String category) {
@@ -70,7 +72,7 @@ public class MenuItem {
         this.description = description;
     }
 
-    public void setIngredients(List<String> ingredients) { 
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -79,8 +81,13 @@ public class MenuItem {
     }
 
     // methods
+    @Override
+    public int compareTo(MenuItem other) {
+        return this.name.compareTo(other.name);
+    }
+
     public boolean isAvailable() {
-        if(stock > 0) {
+        if (stock > 0) {
             return true;
         }
         return false;
@@ -88,9 +95,9 @@ public class MenuItem {
 
     public boolean isVegetarian() {
         List<String> itemIngredients = getIngredients();
-        for(String ingredient : itemIngredients) {
-            if(NOT_VEGETARIAN_FRIENDLY.contains(ingredient)) {
-                return false; //menu item is not vegetarian
+        for (String ingredient : itemIngredients) {
+            if (NOT_VEGETARIAN_FRIENDLY.contains(ingredient)) {
+                return false; // menu item is not vegetarian
             }
         }
         return true;
@@ -99,9 +106,9 @@ public class MenuItem {
     public List<String> findAllergens() {
         List<String> itemIngredients = getIngredients();
         List<String> allergensList = new ArrayList<>();
-        for(String ingredient : itemIngredients) {
-            if(COMMON_FOOD_ALLERGIES.contains(ingredient)) {
-                allergensList.add(ingredient); //menu item contains allergen(s)
+        for (String ingredient : itemIngredients) {
+            if (COMMON_FOOD_ALLERGIES.contains(ingredient)) {
+                allergensList.add(ingredient); // menu item contains allergen(s)
             }
         }
         return allergensList;
@@ -109,7 +116,7 @@ public class MenuItem {
 
     public void listAllergens() {
         List<String> allergensList = findAllergens();
-        if(allergensList.isEmpty()) {
+        if (allergensList.isEmpty()) {
             System.out.println("N/A");
         } else {
             System.out.println("Contains: " + allergensList);
@@ -123,7 +130,7 @@ public class MenuItem {
     public boolean checkIngredientsAvailability() {
         return true;
     }
-    
+
     public boolean changeAvailability() {
         return true;
     }

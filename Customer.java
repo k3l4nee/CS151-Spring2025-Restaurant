@@ -50,48 +50,14 @@ public class Customer implements Orderable {
         this.phoneNumber = newName;
     }
 
-    public static void order(MenuItem item, int quantity) {
+    @Override
+    public void order(MenuItem item, int quantity) {
         int itemStock = item.getStock();
         if(itemStock < quantity) {
             System.out.println("This item: " + item + " is out of stock!");
         } else {
-            item.setStock(itemStock - quantity); 
+            item.setStock(itemStock - quantity);
         }
-    }
-
-    // methods from Orderable
-    @Override
-    public void addToOrder(MenuItem item, int quantity) {
-        for(int i = 0; i < quantity; i++) {
-            order.add(item);
-        }
-    }
-
-    @Override
-    public void removeFromOrder(MenuItem item, int quantity) {
-        for(int i = 0; i < quantity; i++) {
-            order.remove(item);
-        }
-    }
-    
-    @Override
-    public void submitOrder(List<MenuItem> order) {
-        if(order.isEmpty()) {
-            System.out.println("Error: No items in order.");
-            return;
-        } else {
-            orderStatus = "Submitted";
-        }
-        System.out.println("Order has been submitted successfully.");
-    }
-
-    @Override
-    public double calculateTotal(List<MenuItem> order) {
-        double total = 0.0;
-        for(MenuItem item : order) {
-            total += item.getPrice();
-        }
-        return total;
     }
 
     @Override

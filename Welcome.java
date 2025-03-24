@@ -21,10 +21,10 @@ public class Welcome {
         MenuItem bevItem2 = new MenuItem("Water", 0.99, 500, "Beverage");
 
         Menu menu = new Menu();
-        menu.addToMenu(foodItem1);
-        menu.addToMenu(foodItem2);
-        menu.addToMenu(bevItem1);
-        menu.addToMenu(bevItem2);
+        menu.addToMenu(foodItem1, foodItem1.getStock());
+        menu.addToMenu(foodItem2, foodItem2.getStock());
+        menu.addToMenu(bevItem1, bevItem1.getStock());
+        menu.addToMenu(bevItem2, bevItem2.getStock());
 
         restaurant.addEmployee(fullEmp1);
         restaurant.addEmployee(fullEmp2);
